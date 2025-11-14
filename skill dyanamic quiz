@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Questions</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .question-container {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Quiz Questions</h1>
+    <div id="quiz-container">
+        <!-- Questions will be loaded here by JavaScript -->
+    </div>
+
+    <script>
+        // Define your questions in a JavaScript array of objects
+        const questions = [
+            {
+                question: "What is the capital of France?",
+                options: ["Berlin", "Madrid", "Paris", "Rome"],
+                answer: "Paris"
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                options: ["Earth", "Mars", "Jupiter", "Venus"],
+                answer: "Mars"
+            },
+            {
+                question: "What is 2 + 2?",
+                options: ["3", "4", "5", "6"],
+                answer: "4"
+            }
+        ];
+
+        // Get the container where questions will be displayed
+        const quizContainer = document.getElementById('quiz-container');
+
+        // Function to load and display questions
+        function loadQuestions() {
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.classList.add('question-container');
+
+                const questionTitle = document.createElement('h2');
+                questionTitle.textContent = `Question ${index + 1}: ${q.question}`;
+                questionDiv.appendChild(questionTitle);
+
+                const optionsList = document.createElement('ul');
+                q.options.forEach(option => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = option;
+                    optionsList.appendChild(listItem);
+                });
+                questionDiv.appendChild(optionsList);
+
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        // Call the function to load questions when the page loads
+        document.addEventListener('DOMContentLoaded', loadQuestions);
+    </script>
+</body>
+</html>
