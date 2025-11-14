@@ -1,0 +1,79 @@
+<html>
+<table>
+<th>NAME</th>
+    <th>NUMBER</th>
+    <th>CLASS</th>
+   <html>
+ <th>DIVISION</th>
+    <tr>
+        <th>vihaan</th>
+        <th>6897789745</th>
+        <th>7</th>
+        <th>A</th>
+    <tr>
+        <th>rahul</th>
+        <th>3576764455</th>
+        <th>5</th>
+        <th>D</th>
+    <tr>
+        <th>hardik</th>
+        <th>3678777865</th>
+        <th>6</th>
+        <th>C</th>
+    <tr>
+        <th>suresh</th>
+        <th>5588755465</th>
+        <th>9</th>
+        <th>B</th>
+    <tr>
+        <th>rohit</th>
+        <th>4366477547</th>
+        <th>7</th>
+        <th>G</th>
+    <tr>
+        <th>ramesh</th>
+        <th>7462366486</th>
+        <th>11</th>
+        <th>D</th>
+    <tr>
+        <th>lavkesh</th>
+        <th>6767863644</th>
+        <th>12</th>
+        <th>B</th>
+        <p>
+            THE ABOVE TABLE SHOWS THE DATA OF A CLASS IN A SPECIFIC SCHOOL IN PUNE,MAHARASHTRA. THIS SCHOOL WAS FOUNDED IN 1987 BY A RENOWNED GURU FROM PUNE. MANY NATIONAL LEADERS HAVE STUDIED IN THIS SCHOOL.THIS SCHOOL HAS BEEN A SCOPE OF ENLIGHTMENT OF KNOWLEDGE.THIS DATA IS OF THE FIRST BATCH OF THAT SCHOOL, WHICH WAS THERE IN 1987.
+        </p>
+        <p>
+            LINK FOR MORE INFORMATION
+        </p>
+        <a href=https://www.w3schools.com/html/default.asp">
+            MySchool.com.in
+            <img src="pic_school.jpg" alt="Indian school">
+                        * {
+  text-align: center;
+  color: blue;
+}                    
+</table>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
