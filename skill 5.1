@@ -1,0 +1,92 @@
+<DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8"/>
+            <meta name="viewport"content="width-device-width,initial-scale=1"/>
+            <title>CSS transitions and animation demo</title>
+            <style>
+                body
+                {
+                    font-family:arial,sans-serif;
+                    background-color:#ecf0f1;
+                    margin:50px;
+                    display:flex;
+                    flex-direction:column;
+                    align-items:center;
+                    gap:30px;
+                }
+                button{
+                    font-size:20px;
+                    padding:15px 30px;
+                    border:none;
+                    border-radius:10px;
+                    cursor:pointer;
+                    color:light yellow;
+                    user-select:none;
+                    transition:all 0.5s ease;
+                }
+                .btn-color{
+                    background-color: #3498db;
+                    transition:all 0.5s ease;
+                }
+                .btn-color{
+                    background-color:#2ecc71;
+                }
+                .btn-transform{
+                    background-color:#e74c3c;
+                }
+                .btn-transform:hover{
+                    transform:scale(1.2)rotate(10deg);
+                }
+                .btn-opacity{
+                    background-color:#9b59b6;
+                    transition:opacity 0.7s linear;
+                }
+                .btn-opacity:hover{
+                    opacity:0.5;
+                }
+                .box{
+                    width:180px;
+                    height:200px;
+                    background-color:#34495e;
+                    border-radius:20px;
+                    box-shadow:none;
+                    transition:background-color 0.7s ease,border-radius 0.7s ease,box-shadow 0.7s ease;
+                }
+                .box:hover{
+                    background-color:#1abc9c;
+                    border-radius:70%;
+                    box-shadow:0 0 30px #1abc9c;
+                     }
+                     .ball{
+                         width:50px;
+                         height:50px;
+                         background-color:#f39c12;
+                         border-radius:70%;
+                         position:relative;
+                         animation:bounce 2s infinite ease-in-out;
+                         box-shadow:0 5px 10px rgba(0,0,0,0.2);
+                     }
+                     @keyframes bounce{
+                         0%,100%{
+                             top:0;
+                             transform:scale(1);
+                         }
+                         50%{
+                             top:100px;
+                             transform;scale(1.2);
+                         }
+                     }
+            </style>
+        </head>
+        <body>
+            <h1>CSS transition and animation demo</h1>
+            <div>
+                <button class="btn-color">hower me(color)</button>
+                <botton class="btn-transform">hower me(transform)</botton>
+                <bottom class="btn-opacity">hower me(opacity)</bottom>
+            </div>
+            <div class="box" title="hower me"></div>
+            <div class="ball" title="bouncing ball"></div>
+        </body>
+</DOCTYPE>
