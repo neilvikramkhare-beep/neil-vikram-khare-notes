@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multiply with Default Parameter</title>
+</head>
+<body><h2>Multiply Two Numbers</h2>
+  <label>Enter first number:</label>
+  <input type="number" id="num1" placeholder="First number"><br><br>
+  <label>Enter second number (optional):</label>
+  <input type="number" id="num2" placeholder="Second number"><br><br>
+  <button onclick="multiplyNumbers()">Multiply</button>
+  <p id="result"></p>
+  <script>
+    function multiply(a, b = 2) {
+      return a * b;
+    }
+    function multiplyNumbers() {
+      let x = parseFloat(document.getElementById("num1").value);
+      let y = parseFloat(document.getElementById("num2").value);
+      let result = multiply(x, y || undefined);
+      document.getElementById("result").innerHTML =
+        "Result: " + result;
+    }
+  </script>
+</body>
+</html>
