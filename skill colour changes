@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changer</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            transition: background-color 0.3s ease; 
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <p>Choose a background color:</p>
+        <label>
+            <input type="radio" name="color" id="colorRed" value="red" onclick="changeBackgroundColor()"> Red
+        </label>
+        <label>
+            <input type="radio" name="color" id="colorBlue" value="blue" onclick="changeBackgroundColor()"> Blue
+        </label>
+        <label>
+            <input type="radio" name="color" id="colorGreen" value="green" onclick="changeBackgroundColor()"> Green
+        </label>
+        <label>
+            <input type="radio" name="color" id="colorYellow" value="yellow" onclick="changeBackgroundColor()"> Yellow
+        </label>
+    </form>
+    <script>
+        function changeBackgroundColor() {
+            let selectedColor;
+            if (document.getElementById('colorRed').checked) {
+                selectedColor = document.getElementById('colorRed').value;
+            } else if (document.getElementById('colorBlue').checked) {
+                selectedColor = document.getElementById('colorBlue').value;
+            } else if (document.getElementById('colorGreen').checked) {
+                selectedColor = document.getElementById('colorGreen').value;
+            } else if (document.getElementById('colorYellow').checked) {
+                selectedColor = document.getElementById('colorYellow').value;
+            }
+            if (selectedColor) {
+                document.body.style.backgroundColor = selectedColor;
+            }
+        }
+    </script>
+</body>
+</html>
