@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shape Inheritance</title>
+<style>
+  body {
+    font-family: sans-serif;
+    display: flex;
+    gap: 20px;
+  }
+  .shape-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  .shape-container h2 {
+    margin-top: 0;
+  }
+  canvas {
+    border: 1px solid black;
+  }
+</style>
+</head>
+<body>
+<div class="shape-container">
+  <h2>Circle</h2>
+  <canvas id="circleCanvas" width="100" height="100"></canvas>
+</div>
+<div class="shape-container">
+  <h2>Square</h2>
+  <canvas id="squareCanvas" width="100" height="100"></canvas>
+</div>
+<script>
+  class Shape {
+    constructor() {
+      if (this.constructor === Shape) {
+        throw new Error("Abstract class 'Shape' cannot be instantiated directly.");
+      }
+    }
+    draw(context) {
+      throw new Error("Method 'draw()' must be implemented.");
+    }
+  }
+  class Circle extends Shape {
+    constructor() {
+      super();
+      this.radius = 50; 
+      this.centerX = 50;
+      this.centerY = 50;
+      this.color = 'blue';
+    }
+    draw(context) {
+      context.beginPath();
+      context.arc(this.centerX, this.centerY, this.radius, 0, Math.PI * 2);
+      context.fillStyle = this.color;
+      context.fill();
+      context.closePath();
+      console.log("Drawing a circle");
+    }
+  }
+  class Square extends Shape {
+    constructor() {
+      super();
+      this.side = 100; 
+      this.color = 'red';
+    }
+    draw(context) {
+      context.fillStyle = this.color;
+      context.fillRect(0, 0, this.side, this.side);
+      console.log("Drawing a square");
+    }
+  }
+  const circleCanvas = document.getElementById('circleCanvas').getContext('2d');
+  const myCircle = new Circle();
+  myCircle.draw(circleCanvas);
+  const squareCanvas = document.getElementById('squareCanvas').getContext('2d');
+  const mySquare = new Square();
+  mySquare.draw(squareCanvas);
+</script>
+</body>
+</html>
