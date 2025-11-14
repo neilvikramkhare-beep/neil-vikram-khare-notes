@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Object Example</title>
+</head>
+<body>
+  <h2>Student Object Example</h2>
+
+  <p id="dot"></p>
+  <p id="bracket"></p>
+
+  <script>
+    const student = {
+      name: "Lavkesh",
+      age: 17,
+      course: "Computer Science"
+    };
+    document.getElementById("dot").innerHTML =
+      "Using dot notation: " + student.name + ", " + student.age + ", " + student.course;
+    document.getElementById("bracket").innerHTML =
+      "Using bracket notation: " + student["name"] + ", " + student["age"] + ", " + student["course"];
+  </script>
+</body>
+</html>
