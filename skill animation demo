@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Interactive Animation Demo</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 2rem;
+    background: #f0f0f0;
+  }
+  #animateBtn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  #animateBtn:hover {
+    background-color: #0056b3;
+  }
+  #box {
+    width: 150px;
+    height: 150px;
+    background-color: #ff6f61;
+    margin-top: 2rem;
+    border-radius: 8px;
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.5s ease;
+  }
+  @keyframes scaleFade {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.3);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  .animate-box {
+    animation: scaleFade 1s ease forwards;
+  }
+</style>
+</head>
+<body>
+<button id="animateBtn">Click Me</button>
+<div id="box"></div>
+<script>
+  const button = document.getElementById('animateBtn');
+  const box = document.getElementById('box');
+  button.addEventListener('click', () =>) {
+    box.classList.remove('animate-box');
+    void box.offsetWidth;
+    // Add class to start animation
+    box.classList.add('animate-box');
+  }
+</script>
+</body>
+</html>
