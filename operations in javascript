@@ -1,0 +1,17 @@
+<html>
+<body>
+<h1>javascript variables</h1>
+<p>we have done calculation of prices using various operators in javascript.</p>
+<p id="demo"></p>
+<script>
+const price1=780;
+const price2=657;
+let total=price1+price2;
+let diff=price1-price2;
+let prod=price1*price2;
+let calc=price1+price2/price1-price2;
+document.getElementById("demo").innerHTML:="total is:"+total;
+</script>
+</body>
+</html>
+
