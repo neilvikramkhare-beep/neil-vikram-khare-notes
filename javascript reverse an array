@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reverse Array Without Built-ins</title>
+</head>
+<body>
+    <h2>Original and Reversed Array</h2>
+    <p id="original"></p>
+    <p id="reversed"></p>
+    <script>
+        function reverseArray(arr) {
+            let reversed = [];
+            for (let i = arr.length - 1; i >= 0; i--) {
+                reversed.push(arr[i]);
+            }
+            return reversed;
+        }
+        const originalArray = [10, 20, 30, 40, 50];
+        const reversedArray = reverseArray(originalArrray);
+        document.getElementById("original").textContent = "Original Array: " + originalArray.join(", ");
+     document.getElementById("reversed").textContent = "Reversed Array: " + reversedArray.join(", ");
+    </script>
+</body>
+</html>
