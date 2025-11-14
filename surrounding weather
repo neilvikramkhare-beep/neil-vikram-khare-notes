@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Weather Dashboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #87CEEB 0%, #ADD8E6 100%); /* Light blue gradient */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .weather-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 900px;
+            width: 95%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .current-weather {
+            background-color: #4682B4; /* Steel Blue */
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .current-weather h2 {
+            margin: 0 0 10px 0;
+            font-size: 2em;
+        }
+
+        .current-weather .temperature {
+            font-size: 4em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .current-weather .description {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .current-weather .details p {
+            margin: 5px 0;
+            font-size: 1.1em;
+        }
+
+        .forecast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .day-forecast {
+            background-color: #E0FFFF; /* Light Cyan */
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .day-forecast h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .day-forecast .icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .day-forecast .temp-range {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #666;
+        }
+
+        /* Weather Icons (using simple text for demonstration, replace with image/font icons) */
+        .icon-sun::before { content: '☀️'; }
+        .icon-cloud::before { content: '☁️'; }
+        .icon-rain::before { content: '🌧️'; }
+        .icon-storm::before { content: '⛈️'; }
+        .icon-snow::before { content: '❄️'; }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .weather-container {
+                grid-template-columns: 1fr 2fr;
+                text-align: left;
+            }
+            .current-weather {
+                text-align: center;
+            }
+            .forecast-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-container">
+        <div class="current-weather">
+            <h2>London</h2>
+            <div class="temperature">15°C</div>
+            <div class="description">Partly Cloudy</div>
+            <span class="icon icon-cloud" style="font-size: 6em;"></span>
+            <div class="details">
+                <p>Humidity: 70%</p>
+                <p>Wind: 10 km/h</p>
+            </div>
+        </div>
+
+        <div class="forecast-section">
+            <h2>5-Day Forecast</h2>
+            <div class="forecast-grid">
+                <div class="day-forecast">
+                    <h3>Tue</h3>
+                    <span class="icon icon-sun"></span>
+                    <div class="temp-range">18° / 10°</div>
+                </div>
+                <div class="day-forecast">
+                    <h3>Wed</h3>
+                    <span class="icon icon-cloud"></span>
+                    <div class="temp-range">16° / 9°</div>
+                </div>
+                <div class="day-forecast">
+                    <h3>Thu</h3>
+                    <span class="icon icon-rain"></span>
+                    <div class="temp-range">12° / 7°</div>
+                </div>
+                <div class="day-forecast">
+                    <h3>Fri</h3>
+                    <span class="icon icon-storm"></span>
+                    <div class="temp-range">10° / 5°</div>
+                </div>
+                <div class="day-forecast">
+                    <h3>Sat</h3>
+                    <h3>Sat</h3>
+                    <span class="icon icon-snow"></span>
+                    <div class="temp-range">5° / -1°</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
