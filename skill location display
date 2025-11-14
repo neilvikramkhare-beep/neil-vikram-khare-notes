@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Input</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #displayLocation {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Your Location</h1>
+        <input type="text" id="locationInput" placeholder="e.g., New York City, USA">
+        <button onclick="saveLocation()">Save Location</button>
+        <p id="displayLocation"></p>
+    </div>
+    <script>
+        function saveLocation() {
+            const locationInput = document.getElementById('locationInput');
+            const displayLocation = document.getElementById('displayLocation');
+            const userLocation = locationInput.value.trim();
+            if (userLocation) {
+                displayLocation.textContent = `Your location: ${userLocation}`;
+                console.log("User entered location:", userLocation);
+            } else {
+                displayLocation.textContent = "Please enter a location.";
+            }
+        }
+    </script>
+</body>
+</html>
