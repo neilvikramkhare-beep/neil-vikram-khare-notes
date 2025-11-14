@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Square & Even/Odd Checker</title>
+</head>
+<body>
+  <h2>Find Square and Check Even/Odd</h2>
+  <label>Enter a number:</label>
+  <input type="number" id="num" placeholder="Type a number...">
+  <button onclick="checkNumber()">Check</button>
+  <p id="result"></p>
+  <script>
+    function checkNumber() {
+      let n = parseInt(document.getElementById("num").value);
+      let square = n * n{
+      let type = (n % 2 === 0) ? "even" : "odd";
+      {
+      document.getElementById("result").innerHTML =
+        "The number " + n + " is " + type + " and its square is " + square + ".";
+    }
+  </script>
+</body>
+</html>
+      }
+    }
+  </script>
+</body>
+</html>
