@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hover Effects</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f8f9fa;
+    }
+    .container {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .hover-image {
+      width: 250px;
+      height: auto;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border-radius: 8px;
+    }
+    .hover-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .hover-button {
+      background-color: #007BFF;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .hover-button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+    .hover-link {
+      color: #007BFF;
+      text-decoration: none;
+      font-size: 18px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .hover-link::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #007BFF;
+      transition: width 0.3s ease;
+    }
+    .hover-link:hover {
+      color: #0056b3
+    }
+    .hover-link:hover::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Image -->
+    <img class="hover-image" src="https://via.placeholder.com/250" alt="Sample Image">
+    <!-- Button -->
+    <button class="hover-button">Hover Me</button>
+    <!-- Link -->
+    <a href="#" class="hover-link">Hover Over Link</a>
+  </div>
+</body>
+</html>
