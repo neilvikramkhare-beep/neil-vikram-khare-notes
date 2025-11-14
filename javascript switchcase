@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>calculation using if-else and switch statement</h1>
+let a=87;
+let b=76;
+switch(calculate)
+{
+    <script>
+    case 1:
+    let total=a+b;
+    console.log("total:",typeof sum);
+    case 2:
+    let diff=a-b;
+    console.log("diff:",typeof minus);
+    case 3:
+    let prod=a*b;
+    console.log("prod:",typeof multiply);
+    case 4:
+    let div=a/b;
+    console.log("div:",typeof division);
+    case 5:
+    let mod=a%b;
+    console.log("mod:",typeof modulus);
+    break;
+}
+document.getElementId("demo").innerHTML:"total is:"+total;
+console.log("show calculation:",typeof calculate);
+</script>
+</body>
+</html>
