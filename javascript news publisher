@@ -1,0 +1,34 @@
+class NewsPublisher { 
+constructor() { 
+this.subscribers = []; 
+} 
+subscribe(subscriber) { 
+this.subscribers.push(subscriber); 
+} 
+unsubscribe(subscriber) { 
+this.subscribers = this.subscribers.filter(sub => sub !== subscriber); 
+} 
+notify(update) { 
+this.subscribers.forEach(subscriber => subscriber.update(update)); 
+} 
+publish(update) { 
+console.log(Publishing: ${update}); 
+this.notify(update); 
+} 
+} 
+class Subscriber { 
+constructor(name) { 
+this.name = name; 
+} 
+update(update) { 
+console.log(${this.name} received update: ${update}); 
+} 
+} 
+const news = new NewsPublisher(); 
+const alice = new Subscriber("Alice"); 
+const bob = new Subscriber("Bob"); 
+news.subscribe(alice); 
+news.subscribe(bob); 
+news.publish("New article on Observer Pattern!");    
+news.unsubscribe(bob); 
+news.publish("Another update after Bob unsubscribed.");
