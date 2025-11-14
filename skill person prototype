@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Prototype</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .person-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin: 10px;
+        }
+        .person-card h2 {
+            color: #333;
+        }
+        .person-card p {
+            color: #666;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div id="personContainer"></div>
+    <script>
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.introduce = function() {
+            return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+        };
+        const alice = new Person("Alice", 30);
+        const bob = new Person("Bob", 24);
+        const container = document.getElementById('personContainer');
+        function displayPerson(person) {
+            const personCard = document.createElement('div');
+            personCard.classList.add('person-card');
+            const nameElement = document.createElement('h2');
+            nameElement.textContent = person.name;
+            const introElement = document.createElement('p');
+            introElement.textContent = person.introduce();
+            personCard.appendChild(nameElement);
+            personCard.appendChild(introElement);
+            container.appendChild(personCard);
+        }
+        displayPerson(alice);
+        displayPerson(bob);
+    </script>
+</body>
+</html>
