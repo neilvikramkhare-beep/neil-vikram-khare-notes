@@ -1,0 +1,41 @@
+<html>
+  <form>
+    <label for="fname">first name:</label><br>
+    <input type="text" id="fname" name="fname"><br>
+      <label for="lname">last name:</label><br>
+      <input type="text" id="lname" name="lname">
+        <table>
+        <tr>      
+        <th>
+         <th>PRN</th>
+        <th>NAME</th>
+            <th>MARKS</th>
+          <tr>
+            <th>126775458</th>
+            <th>Rahul</th>
+            <th>78</th>
+            <tr>
+              <th>121778908</th>
+              <th>Ravindra</th>
+              <th>79</th>
+              <tr>
+                <th>874838976</th>
+                <th>Aarav</th>
+                <th>47</th>
+                <tr>
+                  <th>787778967</th>
+                  <th>Gautam</th>
+                  <th>76</th>
+                  <tr>
+                    <th>631893879</th>
+                    <th>Hardik</th>
+                    <th>67</th>
+                    <tr>
+                      <th> 378360934</th>
+                      <th>Suresh</th>
+                      <th>45</th>
+                      <tr>
+                        <th>738273568</th>
+                        <th>Mahi</th>
+                        <th>65</th>
+               </html>
