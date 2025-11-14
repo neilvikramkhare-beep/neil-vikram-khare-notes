@@ -1,0 +1,17 @@
+<html>
+    <body>
+        my name is neil vikram khare. i am studying in mitwpu pune.
+<h1>
+    USES OF HTML
+    <p>
+    MY NAME IS NEIL KHARE.THIS IS AN HTML CODE TO CREATE A PARAGRAPH WITH HEADING.Web Page Development: HTML is the core language used to build the structure and content of virtually every web page on the internet. It defines elements like headings, paragraphs, lists, links, images, and other multimedia.
+Structuring Web Content: HTML provides a semantic way to organize content on a page, making it readable and understandable for both users and search engines. Elements like <header>, <footer>, <nav>, <article>, and <section> in HTML5 enhance this semantic structure.
+Creating Hyperlinks: HTML enables the creation of hyperlinks (<a> tags) that connect different web pages and resources, forming the interconnected nature of the World Wide Web.
+Embedding Multimedia.
+Dive deeper in AI Mode
+AI responses may include mistakes. Learn more
+        </p>
+</h1>
+    </body>
+</head>
+</html>
