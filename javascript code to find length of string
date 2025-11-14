@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<htmL>
+<head>
+  <title>String Length Finder</title>
+</head>
+<body>
+  <h2>Find Length of a String</h2>
+  <label>Enter a string:</label>
+  <input type="text" id="userInput" placeholder="Type something...">
+  <button onclick="findLength()">Find Length</button>
+  <p id="result"></p>
+  <script>
+    function findLength() {
+      let str = document.getElementById("userInput").value;
+      let length = str.length;
+      document.getElementById("result").innerHTML =
+        "Length of the string: " + length;
+    }
+  </script>
+</body>
+</html>
