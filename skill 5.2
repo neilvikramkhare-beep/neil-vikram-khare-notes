@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animation States with Keyframes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      align-items: center;
+    }
+    .box {
+      width: 150px;
+      height: 150px;
+      background-color: #3498db;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-size: 1.2rem;
+    }
+    .fade-in {
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .slide-in-left {
+      animation: slideInLeft 1.5s ease-out forwards;
+    }
+    @keyframes slideInLeft {
+      0% {
+        transform: translateX(-200px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    .scale-up {
+      animation: scaleUp 1s ease-in-out forwards;
+    }
+    @keyframes scaleUp {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    .rotate {
+      animation: rotateIn 2s ease-in-out forwards;
+    }
+    @keyframes rotateIn {
+      0% {
+        transform: rotate(-180deg);
+        opacity: 0;
+      }
+      100% {
+        transform: rotate(0deg);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box fade-in">Fade In</div>
+  <div class="box slide-in-left">Slide In</div>
+  <div class="box scale-up">Scale Up</div>
+  <div class="box rotate">Rotate</div>
+</body>
+</html>
