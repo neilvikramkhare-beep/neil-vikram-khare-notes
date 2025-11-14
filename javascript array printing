@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array Display</title>
+</head>
+<body>
+    <h2>Array of 10 Integers</h2>
+    <p id="output"></p>
+    <script>
+        const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const outputText = numbers.join(', ');
+        document.getElementById("output").textContent = outputText;
+    </script>
+</body>
+</html>
