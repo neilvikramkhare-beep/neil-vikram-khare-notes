@@ -1,0 +1,40 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Linear Search Example</title>
+</head>
+<body>
+  <h1>Linear Search in JavaScript</h1>
+  <p>List: <span id="list-display"></span></p>
+  <label for="search-input">Enter element to search:</label>
+  <input type="number" id="search-input" />
+  <button onclick="performSearch()">Search</button>
+  <p id="result"></p>
+  <script>
+    const list = [10, 23, 45, 70, 11, 15];
+    document.getElementById('list-display').textContent = list.join(', ');
+    function linearSearch(arr, target) {
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === target) {
+          return i;
+        }
+      }
+      return -1;
+    }
+    function performSearch() {
+      const input = document.getElementById('search-input').value;
+      const target = Number(input);
+      const index = linearSearch(list, target);
+      
+      const resultEl = document.getElementById('result');
+      if (index !== -1) {
+        resultEl.textContent = `Element ${target} found at index ${index}.`;
+      } else {
+        resultEl.textContent = `Element ${target} not found in the list.`;
+      }
+    }
+  </script>
+</body>
+</html>
