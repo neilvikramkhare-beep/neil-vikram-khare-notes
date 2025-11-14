@@ -1,0 +1,22 @@
+class BankAccount
+    {
+        #balance = 0; 
+        constructor(initialBalance)
+        {
+            this.#balance = initialBalance;
+        }
+        deposit(amount)
+        {
+            if (amount > 0) 
+            {
+                this.#balance += amount;
+            }
+        }
+        getBalance() 
+        {
+            return this.#balance;
+        }
+    }
+    const myAccount = new BankAccount(1676374600);
+    myAccount.deposit(50);
+    console.log(myAccount.getBalance()); 
