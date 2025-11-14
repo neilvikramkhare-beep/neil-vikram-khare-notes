@@ -1,0 +1,39 @@
+<DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8"/>
+            <meta name="viewport" content="width=device-width,initial-scale=1"/>
+            <title>FLEXBOX SECTION LAYOUT BY NEIL</title>
+            <style>
+                body{
+                    margin:0;
+                    font-family:Arial,sans-serif;
+                }
+                section{
+                    display:flex;
+                    flex-direction:row;
+                    justify-content:center;
+                    align-items: center;
+                    height: 500px;
+                    background-color:#f0f0f0;
+                    gap:30px;
+                }
+                .box{
+                    background-color:#4CAF50;
+                    color:light blue;
+                    padding:20px 40px;
+                    border-radius:10px;
+                    flex-grow:1;
+                    text-align:center;
+                }
+            </style>
+        </head>
+        </body>
+        <section>
+            <div class="box">SUYASH</div>
+            <div class="box">ANISH</div>
+            <div class="box">VIRAJ</div>
+        </section>
+        </body>
+    </html>
+</DOCTYPE>
