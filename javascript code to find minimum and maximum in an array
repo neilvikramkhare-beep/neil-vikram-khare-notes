@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Max and Min in Array</title>
+</head>
+<body>
+  <h2>Find Maximum and Minimum in an Array</h2>
+  <p>Array: <span id="array"></span></p>
+  <p>Maximum: <span id="max"></span></p>
+  <p>Minimum: <span id="min"></span></p>
+  <script>
+    const numbers = [23, 89, 1, 45, 77, -10, 5];
+    document.getElementById("array").textContent = numbers.join(", ");
+    const max = Math.max(...numbers);
+    const min = Math.min(...numbers);
+    document.getElementById("max").textContent = max;
+    document.getElementById("min").textContent = min;
+  </script>
+</body>
+</html>
