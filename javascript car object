@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car Object Example</title>
+</head>
+<body>
+  <h2>Car Object Operations</h2>
+  <p id="original"></p>
+  <p id="added"></p>
+  <p id="updated"></p>
+  <p id="deleted"></p>
+  <script>
+    const car = {
+      brand: "Toyota",
+      model: "Corolla"
+    }
+    document.getElementById("original").innerHTML =
+      "Original car: " + car.brand + " " + car.mode    car.year = 2022;   document.getElementById("added").innerHTML =
+      "After adding year: " + car.brand + " " + car.model + " (" + car.year + ")";
+    car.model = "Camry";
+    document.getElementById("updated").innerHTML =
+      "After updating model: " + car.brand + " " + car.model + " (" + car.year + ")";
+    delete car.year;
+    document.getElementById("deleted").innerHTML =
+      "After deleting year: " + car.brand + " " + car.model + " (year removed)";
+  </script>
+</body>
+</html>
