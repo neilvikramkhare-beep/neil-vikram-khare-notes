@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz with Radio Buttons</title>
+</head>
+<body>
+
+    <h1>Simple Quiz</h1>
+
+    <form>
+        <fieldset>
+            <legend>Question 1: What is the capital of France?</legend>
+
+            <div>
+                <input type="radio" id="q1_optionA" name="capital_france" value="london">
+                <label for="q1_optionA">London</label>
+            </div>
+
+            <div>
+                <input type="radio" id="q1_optionB" name="capital_france" value="paris">
+                <label for="q1_optionB">Paris</label>
+            </div>
+
+            <div>
+                <input type="radio" id="q1_optionC" name="capital_france" value="rome">
+                <label for="q1_optionC">Rome</label>
+            </div>
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend>Question 2: Which planet is known as the Red Planet?</legend>
+
+            <div>
+                <input type="radio" id="q2_optionA" name="red_planet" value="mars">
+                <label for="q2_optionA">Mars</label>
+            </div>
+
+            <div>
+                <input type="radio" id="q2_optionB" name="red_planet" value="jupiter">
+                <label for="q2_optionB">Jupiter</label>
+            </div>
+
+            <div>
+                <input type="radio" id="q2_optionC" name="red_planet" value="venus">
+                <label for="q2_optionC">Venus</label>
+            </div>
+        </fieldset>
+
+        <br>
+
+        <button type="submit">Submit Answers</button>
+    </form>
+
+</body>
+</html>
