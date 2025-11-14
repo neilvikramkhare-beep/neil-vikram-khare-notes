@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive UI Components</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .interactive-box {
+            width: 200px;
+            height: 100px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .interactive-box:hover {
+            background-color: #2980b9;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        #input-display {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="hover-click-box" class="interactive-box">
+        Hover or Click Me!
+    </div>
+    <input type="text" id="text-input" placeholder="Type something here...">
+    <p>You typed: <span id="input-display"></span></p>
+    <script>
+        const hoverClickBox = document.getElementById('hover-click-box');
+        const textInput = document.getElementById('text-input');
+        const inputDisplay = document.getElementById('input-display');
+        hoverClickBox.addEventListener('mouseover', () => {
+            hoverClickBox.textContent = 'You are hovering!';
+        });
+        hoverClickBox.addEventListener('mouseout', () => {
+            hoverClickBox.textContent = 'Hover or Click Me!';
+        });
+        hoverClickBox.addEventListener('click', () => {
+            alert('Box clicked!');
+            hoverClickBox.style.backgroundColor = '#e74c3c';
+        });
+        textInput.addEventListener('input', (event) => {
+            inputDisplay.textContent = event.target.value;
+        });
+    </script>
+</body>
+</html>
