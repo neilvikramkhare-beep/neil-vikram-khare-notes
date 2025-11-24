@@ -1,0 +1,193 @@
+<?php
+$db = new PDO("sqlite:synclink.db");
+$db->exec("
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE,
+    password TEXT
+);
+CREATE TABLE IF NOT EXISTS messages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT,
+    text TEXT,
+    timestamp TEXT
+);
+");
+if (isset($_GET['api'])) {
+    header("Content-Type: application/json");
+    if ($_GET['api'] === "login") {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $u = $data["username"];
+        $p = $data["password"];
+        $stmt = $db->prepare("SELECT * FROM users WHERE username=? AND password=?");
+        $stmt->execute([$u, $p]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$user) {
+            $stmt = $db->prepare("INSERT INTO users (username, password) VALUES (?,?)");
+            $stmt->execute([$u, $p]);
+        }
+        echo json_encode(["success" => true]);
+        exit;
+    }
+    if ($_GET['api'] === "getMessages") {
+        $messages = $db->query("SELECT * FROM messages ORDER BY id ASC")
+                       ->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($messages);
+        exit;
+    }
+    if ($_GET['api'] === "sendMessage") {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $stmt = $db->prepare("INSERT INTO messages (username, text, timestamp)
+                              VALUES (?, ?, ?)");
+        $stmt->execute([$data['username'], $data['text'], date("Y-m-d H:i:s")]);
+        echo json_encode(["success" => true]);
+        exit;
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SyncLink SQL Integrated</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#1a181b;color:#fff;font-family:Courier New,monospace;}
+#loginPage{display:flex;justify-content:center;align-items:center;height:100vh;}
+#appPage{display:none;height:100vh;}
+.login-box{padding:40px;border:1px solid #ba6efd88;background:#1d1b1ecc;width:400px;}
+.input-field,.message-input{width:100%;padding:10px;margin:10px 0;background:#2d2d44;border:1px solid #ba6efd88;color:#fff;}
+.login-button,.send-button,.nav-item{padding:10px;border:1px solid #b07bff;background:#b07bff;color:#fff;cursor:pointer;}
+.hidden{display:none;}
+.app-container{display:flex;height:100vh;}
+.sidebar{width:200px;padding:20px;border-right:1px solid #ba6efd88;}
+.messages-area{flex:1;overflow-y:auto;padding:20px;}
+.message-group{display:flex;gap:10px;margin-bottom:15px;}
+.message-avatar{width:40px;height:40px;border:1px solid #b07bff;display:flex;justify-content:center;align-items:center;}
+.message-bubble{border:1px solid #b07bff;padding:10px;max-width:500px;background:#2d2d44;}
+</style>
+</head>
+<body>
+<div id="loginPage">
+    <div class="login-box">
+        <h2>SyncLink</h2>
+        <label>Username</label>
+        <input id="loginUsername" class="input-field">
+        <label>Password</label>
+        <input type="password" id="loginPassword" class="input-field">
+        <button id="loginBtn" class="login-button">Access SyncLink</button>
+        <div id="loginError" class="error-message hidden">Invalid login</div>
+    </div>
+</div>
+<div id="appPage" class="app-container">
+    <aside class="sidebar">
+        <button class="nav-item active" data-view="chat">Chat</button>
+        <button class="nav-item" data-view="settings">Settings</button>
+        <button class="nav-item" data-view="dms">DMs</button>
+    </aside>
+    <main id="chatView">
+        <div id="messagesArea" class="messages-area"></div>
+        <div class="input-area" style="padding:20px;display:flex;gap:10px;">
+            <input id="messageInput" class="message-input" placeholder="Type message...">
+            <button id="sendBtn" class="send-button">Send</button>
+        </div>
+    </main>
+    <main id="settingsView" class="hidden" style="padding:20px">
+        <h2>Settings</h2>
+        <label>Username</label>
+        <input id="usernameInput" class="input-field">
+    </main>
+    <main id="dmsView" class="hidden" style="padding:20px">
+        <h2>No DMs</h2>
+    </main>
+</div>
+<script>
+class SyncLinkSQL {
+    constructor() {
+        this.username = "";
+        this.init();
+    }
+    async init() {
+        this.setupLogin();
+        this.setupChatControls();
+    }
+    setupLogin() {
+        loginBtn.onclick = async () => {
+            let u = loginUsername.value.trim();
+            let p = loginPassword.value.trim();
+            if (!u || !p) {
+                loginError.classList.remove("hidden");
+                return;
+            }
+            let res = await fetch("?api=login", {
+                method: "POST",
+                body: JSON.stringify({ username: u, password: p })
+            });
+            this.username = u;
+            usernameInput.value = u;
+            loginPage.style.display = "none";
+            appPage.style.display = "flex";
+            this.loadMessages();
+        };
+    }
+    setupChatControls() {
+        sendBtn.onclick = () => this.sendMessage();
+        messageInput.onkeypress = e => { if (e.key === "Enter") this.sendMessage(); };
+        document.querySelectorAll(".nav-item").forEach(btn => {
+            btn.onclick = () => this.switchView(btn);
+        });
+        usernameInput.onchange = () => this.username = usernameInput.value;
+    }
+    switchView(btn) {
+        document.querySelectorAll(".nav-item").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        chatView.classList.add("hidden");
+        settingsView.classList.add("hidden");
+        dmsView.classList.add("hidden");
+        document.getElementById(btn.dataset.view + "View").classList.remove("hidden");
+    }
+    async loadMessages() {
+        let res = await fetch("?api=getMessages");
+        let messages = await res.json();
+        messagesArea.innerHTML = "";
+        messages.forEach(m => {
+            this.renderMessage(m.username, m.text);
+        });
+        messagesArea.scrollTop = messagesArea.scrollHeight;
+    }
+    async sendMessage() {
+        let text = messageInput.value.trim();
+        if (!text) return;
+        await fetch("?api=sendMessage", {
+            method: "POST",
+            body: JSON.stringify({
+                username: this.username,
+                text
+            })
+        });
+        this.renderMessage(this.username, text);
+        messageInput.value = "";
+    }
+    renderMessage(user, text) {
+        let wrap = document.createElement("div");
+        wrap.className = "message-group";
+        wrap.innerHTML = `
+            <div class="message-avatar">${user[0].toUpperCase()}</div>
+            <div class="message-bubble">
+                <b>${user}</b><br>${text}
+            </div>`;
+        messagesArea.appendChild(wrap);
+        messagesArea.scrollTop = messagesArea.scrollHeight;
+    }
+}
+document.addEventListener("DOMContentLoaded", () => new SyncLinkSQL());
+<title>A brief about the project working</title>
+<p>This is a chat application used to store data, fetch data from multiple users and ensure smooth communication between them.
+ This application will store the data in an SQL database integrated into the app using nodejs and javascript.
+ We have used important concepts of OOP in javascript to integrate our database with our application.
+ This project can be seen as a good example of ORDBMS and web databases in which object oriented concepts and RDBMS concepts are used in one project.
+ On the other hand this project also helps programmers to understand how various coding languages can be integrated into one single code and multi-using and multi-tasking can be achieved.</p>
+</script>
+</body>
+</html>
