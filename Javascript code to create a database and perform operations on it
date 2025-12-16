@@ -1,63 +1,66 @@
 console.log("Javascript code to create a database and perform operations on it.")
 const usersDB = [
-    { id: 1, name: 'Alice', roleId: 1 },
-    { id: 2, name: 'Bob', roleId: 2 },
-    { id: 3, name: 'Charlie', roleId: 3 }
+    { 
+        id: 1, name: 'Alice', roleId: 1 },
+    {
+        id: 2, name: 'Bob', roleId: 2 },
+    { 
+        id: 3, name: 'Charlie', roleId: 3 
+    }
 ];
-
 const rolesDB = [
     { roleId: 1, roleName: 'Viewer', permissions: ['read'] },
     { roleId: 2, roleName: 'Editor', permissions: ['read', 'write'] },
-    { roleId: 3, roleName: 'Admin', permissions: ['read', 'write', 'delete'] }
+    { 
+        roleId: 3, roleName: 'Admin', permissions: ['read', 'write', 'delete']
+    }
 ];
-
-// --- 2. Simulate GRANT and REVOKE (Custom Logic) ---
-
-/**
- * Simulates granting a permission to a user by updating their role's permissions.
- * NOTE: In a real app, this would be a server-side action.
- */
-function grantPermission(userId, permission) {
+function grantPermission(userId, permission) 
+{
     const user = usersDB.find(u => u.id === userId);
-    if (user) { // Use if-else for conditional logic
+    if (user) 
+    { 
         const role = rolesDB.find(r => r.roleId === user.roleId);
-        if (role && !role.permissions.includes(permission)) {
+        if (role && !role.permissions.includes(permission)) 
+        {
             role.permissions.push(permission);
             console.log(`GRANTED '${permission}' to user ${user.name}`);
-        } else if (role && role.permissions.includes(permission)) {
+        } 
+        else if (role && role.permissions.includes(permission)) 
+        {
             console.log(`User ${user.name} already has '${permission}' permission.`);
         }
-    } else {
+    } 
+    else 
+    {
         console.log(`User ID ${userId} not found.`);
     }
 }
-
-/**
- * Simulates revoking a permission.
- */
-function revokePermission(userId, permission) {
+function revokePermission(userId, permission) 
+{
     const user = usersDB.find(u => u.id === userId);
-    if (user) {
+    if (user) 
+    {
         const role = rolesDB.find(r => r.roleId === user.roleId);
         const index = role.permissions.indexOf(permission);
-        if (index > -1) {
+        if (index > -1) 
+        {
             role.permissions.splice(index, 1);
             console.log(`REVOKED '${permission}' from user ${user.name}`);
-        } else {
+        } 
+        else
+        {
             console.log(`User ${user.name} did not have '${permission}' permission.`);
         }
     }
 }
-
-// --- 3. Perform a JOIN operation ---
-
-/**
- * Performs a LEFT JOIN operation on two datasets based on a common key.
- */
-function leftJoinUsersAndRoles(users, roles) {
-    const joinedData = users.map(user => {
+function leftJoinUsersAndRoles(users, roles)
+{
+    const joinedData = users.map(user => 
+    {
         const role = roles.find(roleItem => roleItem.roleId === user.roleId);
-        return {
+        return 
+        {
             id: user.id,
             name: user.name,
             roleName: role ? role.roleName : 'Unknown',
@@ -66,16 +69,11 @@ function leftJoinUsersAndRoles(users, roles) {
     });
     return joinedData;
 }
-
-// --- Demonstration ---
-
-console.log("--- Initial Data ---");
+console.log("Initial Data");
 console.table(leftJoinUsersAndRoles(usersDB, rolesDB));
-
-console.log("--- Granting 'delete' permission to Alice (Viewer) ---");
-grantPermission(1, 'delete'); // Alice is a Viewer, grants delete permission
-console.table(leftJoinUsersAndRoles(usersDB, rolesDB)); // Check updated permissions
-
-console.log("--- Revoking 'write' permission from Bob (Editor) ---");
-revokePermission(2, 'write'); // Bob is an Editor, revokes write permission
-console.table(leftJoinUsersAndRoles(usersDB, rolesDB)); // Check updated permissions
+console.log("Granting 'delete' permission to Alice");
+grantPermission(1, 'delete');
+console.table(leftJoinUsersAndRoles(usersDB, rolesDB)); 
+console.log("Revoking 'write' permission from Bob");
+revokePermission(2, 'write'); 
+console.table(leftJoinUsersAndRoles(usersDB, rolesDB)); 
