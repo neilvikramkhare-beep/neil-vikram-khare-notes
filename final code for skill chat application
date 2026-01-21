@@ -1,0 +1,157 @@
+const express = require("express");
+const sqlite3 = require("sqlite3").verbose();
+const fs = require("fs");
+const app = express();
+app.use(express.json());
+const db = new sqlite3.Database("synclink.db");
+db.serialize(() => {
+  db.run(`
+    CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username TEXT UNIQUE,
+      password TEXT
+    )
+  `);
+  db.run(`
+    CREATE TABLE IF NOT EXISTS messages (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username TEXT,
+      text TEXT,
+      timestamp TEXT
+    )
+  `);
+});
+app.post("/api/login", (req, res) => {
+  const { username, password } = req.body;
+  db.get(
+    "SELECT * FROM users WHERE username=? AND password=?",
+    [username, password],
+    (err, row) => {
+      if (!row) {
+        db.run(
+          "INSERT INTO users(username,password) VALUES(?,?)",
+          [username, password]
+        );
+      }
+      res.json({ success: true });
+    }
+  );
+});
+app.get("/api/getMessages", (req, res) => {
+  db.all("SELECT * FROM messages ORDER BY id ASC", (err, rows) => {
+    res.json(rows);
+  });
+});
+app.post("/api/sendMessage", (req, res) => {
+  const { username, text } = req.body;
+  db.run(
+    "INSERT INTO messages(username,text,timestamp) VALUES(?,?,?)",
+    [username, text, new Date().toISOString()]
+  );
+  res.json({ success: true });
+});
+app.get("/", (req, res) => {
+  res.send(`
+<!DOCTYPE html>
+<html>
+<head>
+<title>SyncLink</title>
+<style>
+body{background:#1a181b;color:white;font-family:Courier New}
+input,button{padding:10px;margin:5px;background:#2d2d44;color:white;border:1px solid #b07bff}
+#app{display:none}
+.message{border:1px solid #b07bff;padding:5px;margin:5px}
+</style>
+</head>
+<body>
+<div id="login">
+  <h2>SyncLink Login</h2>
+  <input id="u" placeholder="Username">
+  <input id="p" type="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+</div>
+<div id="app">
+  <h2>Chat</h2>
+  <div id="messages"></div>
+  <input id="msg" placeholder="Message">
+  <button onclick="send()">Send</button>
+</div>
+<script>
+let user = "";
+async function login(){
+  user = u.value;
+  await fetch("/api/login",{
+    method:"POST",
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({username:u.value,password:p.value})
+  });
+  login.style.display="none";
+  app.style.display="block";
+  load();
+}
+async function load(){
+  let r = await fetch("/api/getMessages");
+  let data = await r.json();
+  messages.innerHTML="";
+  data.forEach(m=>{
+    messages.innerHTML += "<div class='message'><b>"+m.username+"</b>: "+m.text+"</div>";
+  });
+}
+async function send(){
+  await fetch("/api/sendMessage",{
+    method:"POST",
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({username:user,text:msg.value})
+  });
+  msg.value="";
+  load();
+}
+</script>
+</body>
+</html>
+`);
+});
+class College {
+  constructor(n,a,p,s,d){ Object.assign(this,{name:n,age:a,post:p,salary:s,DOJ:d}); }
+}
+class Location {
+  constructor(c,ct){ this.city=c; this.country=ct; }
+}
+class EmployeeDetails {
+  constructor(c,l){ this.college=c; this.location=l; }
+  print(){
+    console.log(`${this.college.name} | ${this.college.post} | ${this.location.city}`);
+  }
+}
+function callPython(){ console.log("Python executed"); }
+function callJava(){ console.log("Java executed"); }
+function callSQL(){ console.log("SQL executed"); }
+function callC(){ console.log("C executed"); }
+const DBFILE = "warehouse.db";
+const TABLENAME = "sales";
+function ETL(){
+  if(fs.existsSync(DBFILE)) fs.unlinkSync(DBFILE);
+  const db2 = new sqlite3.Database(DBFILE);
+  const data = [
+    {id:1,p:"Laptop",q:2,pr:800},
+    {id:2,p:"Mouse",q:2,pr:20}
+  ];
+  db2.serialize(()=>{
+    db2.run(`CREATE TABLE ${TABLENAME}(id INT, product TEXT, total INT)`);
+    const st = db2.prepare(`INSERT INTO ${TABLENAME} VALUES(?,?,?)`);
+    data.forEach(d=>st.run(d.id,d.p,d.q*d.pr));
+    st.finalize();
+  });
+  console.log("ETL Completed");
+}
+console.log("Employee Program Started");
+const emp = new EmployeeDetails(
+  new College("Rahul",32,"Manager",80000,"Tuesday"),
+  new Location("Pune","India")
+);
+emp.print();
+callPython(); callJava(); callSQL(); callC();
+ETL();
+app.listen(3000, () => {
+  console.log("SyncLink running at http://localhost:3000");
+});
