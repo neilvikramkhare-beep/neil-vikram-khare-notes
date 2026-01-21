@@ -1,79 +1,177 @@
-console.log("Javascript code to create a database and perform operations on it.")
-const usersDB = [
-    { 
-        id: 1, name: 'Alice', roleId: 1 },
-    {
-        id: 2, name: 'Bob', roleId: 2 },
-    { 
-        id: 3, name: 'Charlie', roleId: 3 
-    }
-];
-const rolesDB = [
-    { roleId: 1, roleName: 'Viewer', permissions: ['read'] },
-    { roleId: 2, roleName: 'Editor', permissions: ['read', 'write'] },
-    { 
-        roleId: 3, roleName: 'Admin', permissions: ['read', 'write', 'delete']
-    }
-];
-function grantPermission(userId, permission) 
-{
-    const user = usersDB.find(u => u.id === userId);
-    if (user) 
-    { 
-        const role = rolesDB.find(r => r.roleId === user.roleId);
-        if (role && !role.permissions.includes(permission)) 
-        {
-            role.permissions.push(permission);
-            console.log(`GRANTED '${permission}' to user ${user.name}`);
-        } 
-        else if (role && role.permissions.includes(permission)) 
-        {
-            console.log(`User ${user.name} already has '${permission}' permission.`);
-        }
-    } 
-    else 
-    {
-        console.log(`User ID ${userId} not found.`);
+const fs = require('fs');
+const sqlite3 = require('sqlite3').verbose();
+
+class College {
+    constructor(n, a, p, s, doj) {
+        this.name = n;
+        this.age = a;
+        this.post = p;
+        this.salary = s;
+        this.DOJ = doj;
     }
 }
-function revokePermission(userId, permission) 
-{
-    const user = usersDB.find(u => u.id === userId);
-    if (user) 
-    {
-        const role = rolesDB.find(r => r.roleId === user.roleId);
-        const index = role.permissions.indexOf(permission);
-        if (index > -1) 
-        {
-            role.permissions.splice(index, 1);
-            console.log(`REVOKED '${permission}' from user ${user.name}`);
-        } 
-        else
-        {
-            console.log(`User ${user.name} did not have '${permission}' permission.`);
-        }
+
+class Location {
+    constructor(city, cntry) {
+        this.city = city;
+        this.country = cntry;
     }
 }
-function leftJoinUsersAndRoles(users, roles)
-{
-    const joinedData = users.map(user => 
-    {
-        const role = roles.find(roleItem => roleItem.roleId === user.roleId);
-        return 
-        {
-            id: user.id,
-            name: user.name,
-            roleName: role ? role.roleName : 'Unknown',
-            permissions: role ? role.permissions : []
-        };
+
+class EmployeeDetails {
+    constructor(c, l) {
+        this.collegeInfo = c;
+        this.locationInfo = l;
+    }
+
+    printCombinedDetails() {
+        console.log(
+            `${this.collegeInfo.name} | ${this.collegeInfo.age} | ` +
+            `${this.collegeInfo.post} | ${this.collegeInfo.salary} | ` +
+            `${this.collegeInfo.DOJ} | ${this.locationInfo.city} | ` +
+            `${this.locationInfo.country}`
+        );
+    }
+}
+
+function callPythonSubprogram() {
+    console.log("\nSimulating external Python script execution:");
+    console.log("Python logic executed successfully.");
+}
+
+function callJavaSubprogram() {
+    console.log("\nSimulating external Java script execution:");
+    console.log("Java logic executed successfully.");
+}
+
+function callSQLSubprogram() {
+    console.log("\nSimulating external SQL script execution:");
+    console.log("SQL logic executed successfully.");
+}
+
+function callCSubprogram() {
+    console.log("\nSimulating external C script execution:");
+    console.log("C logic executed successfully.");
+}
+
+function runEmployeeDetailsLogic() {
+    const isAuthorized = true;
+    if (isAuthorized) {
+        console.log("Access Granted. Displaying Employee Details:");
+        console.log("Name | Age | Post | Salary | DOJ | City | Country");
+        const collegeData = [
+            new College("Suyash", 43, "Admin", 45000, "Monday"),
+            new College("Amit", 54, "Supervisor", 68000, "Wednesday"),
+            new College("Pravin", 45, "Staff", 32000, "Saturday"),
+            new College("Rahul", 32, "Manager", 80000, "Tuesday"),
+            new College("Amey", 46, "Synchronizer", 64000, "Thursday"),
+            new College("Aditya", 62, "HOD", 90000, "Monday"),
+            new College("Shyama", 20, "Clerk", 29000, "Friday"),
+            new College("Farida", 29, "Advisor", 26000, "Wednesday"),
+            new College("Mrunal", 72, "Query", 10000, "Thursday"),
+            new College("Ragini", 38, "Database", 83000, "Saturday")
+        ];
+        const locationData = [
+            new Location("Pune", "India"),
+            new Location("Mumbai", "India"),
+            new Location("Nagpur", "India"),
+            new Location("Delhi", "India"),
+            new Location("Bangalore", "India"),
+            new Location("Chennai", "India"),
+            new Location("Kolkata", "India"),
+            new Location("Hyderabad", "India"),
+            new Location("Ahmedabad", "India"),
+            new Location("Jaipur", "India")
+        ];
+        for (let i = 0; i < 10; i++) {
+            const emp = new EmployeeDetails(collegeData[i], locationData[i]);
+            emp.printCombinedDetails();
+        }
+        callPythonSubprogram();
+        callJavaSubprogram();
+        callSQLSubprogram();
+        callCSubprogram();
+    } else {
+        console.log("Access Revoked. User is not authorized.");
+    }
+}
+
+const DBFILE = "data_warehouse.db";
+const TABLENAME = "salesdata";
+
+function extractData() {
+    try {
+        const data1 = [
+            { order_id: 1, product: "Laptop", quantity: 2, price: 800 },
+            { order_id: 2, product: "Mouse", quantity: 2, price: 20 },
+            { order_id: 3, product: "Keyboard", quantity: 1, price: 50 }
+        ];
+        const data2 = [
+            { order_id: 4, product: "Monitor", quantity: 1, price: 150 },
+            { order_id: 5, product: "Laptop", quantity: 1, price: 750 }
+        ];
+        const combinedData = [...data1, ...data2];
+        console.log("\n✔ Data extracted successfully.");
+        return combinedData;
+    } catch (e) {
+        console.log(`❌ Error during extraction: ${e}`);
+        return [];
+    }
+}
+
+function transformData(df) {
+    try {
+        const transformed = df.map(row => ({
+            ...row,
+            totalprice: row.quantity * row.price
+        }));
+        console.log("✔ Data transformed successfully.");
+        return transformed;
+    } catch (e) {
+        console.log(`❌ Error during transformation: ${e}`);
+        return [];
+    }
+}
+
+function loadData(df, dbfile, tablename) {
+    const db = new sqlite3.Database(dbfile, (err) => {
+        if (err) return console.error(err.message);
     });
-    return joinedData;
+
+    db.serialize(() => {
+        db.run(`DROP TABLE IF EXISTS ${tablename}`);
+        db.run(`CREATE TABLE ${tablename} (order_id INT, product TEXT, quantity INT, price INT, totalprice REAL)`);
+        
+        const stmt = db.prepare(`INSERT INTO ${tablename} VALUES (?, ?, ?, ?, ?)`);
+        df.forEach(row => {
+            stmt.run(row.order_id, row.product, row.quantity, row.price, row.totalprice);
+        });
+        stmt.finalize((err) => {
+            if (!err) {
+                console.log(`✔ Data loaded successfully into SQLite database: ${dbfile}`);
+            }
+            db.close();
+        });
+    });
 }
-console.log("Initial Data");
-console.table(leftJoinUsersAndRoles(usersDB, rolesDB));
-console.log("Granting 'delete' permission to Alice");
-grantPermission(1, 'delete');
-console.table(leftJoinUsersAndRoles(usersDB, rolesDB)); 
-console.log("Revoking 'write' permission from Bob");
-revokePermission(2, 'write'); 
-console.table(leftJoinUsersAndRoles(usersDB, rolesDB)); 
+
+function runETLProcess() {
+    if (fs.existsSync(DBFILE)) {
+        fs.unlinkSync(DBFILE);
+        console.log(`Existing database file '${DBFILE}' removed.`);
+    }
+    const extractedData = extractData();
+    if (extractedData.length > 0) {
+        const transformedData = transformData(extractedData);
+        if (transformedData.length > 0) {
+            loadData(transformedData, DBFILE, TABLENAME);
+        }
+    }
+}
+
+console.log("Starting Employee Details Program");
+runEmployeeDetailsLogic();
+console.log("\n" + "=".repeat(50) + "\n");
+console.log("Starting ETL Process Program");
+runETLProcess();
+
