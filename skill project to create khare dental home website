@@ -124,6 +124,7 @@
   <a href="#doctors">Doctors</a>
   <a href="#services">Services</a>
   <a href="#contact">Contact</a>
+  <a href="#reviews">Reviews</a>
 </nav>
 <section class="hero">
   <h1>Your Trusted Partner in Compassionate Dental Health</h1>
@@ -355,7 +356,12 @@
     <p>(1) "&#9733;&#9733;&#9733;&#9733;&#9734; I will recommend this place for children as well."</p>
     <p>(2) "&#9733;&#9733;&#9733;&#9733;&#9734; I had a root canal and bridge work done by Dr. Khare."</p>
     <p>(3) "&#9733;&#9733;&#9733;&#9733;&#9733; Helpful staff , good experience overall."</p>
-    <div id="reviewsList"> </div>
+    <p>(4) "&#9733;&#9733;&#9733;&#9733;&#9733;The Dentists at Khare Dental Home are truly outstanding. They take time to listen to your concerns and conduct a comprehensive examination, explaining each step along the way. Their attention to detail and commitment to patient education really stood out to me.The combination of friendly staff, skilled professionals, and modern facilities always assures me that I was receiving top-notch care."</p>
+    <p>(5)"&#9733;&#9733;&#9733;&#9733;&#9733; I had a wisdom tooth extraction and a filling done by Dr Vikram Khare. The whole process was absolutely painless and very smooth. The doctor is skilled, caring, and makes you feel at ease throughout the treatment. Highly professional and approachable. I highly recommend him for any dental care needs."
+    <p>(6)"&#9733;&#9733;&#9733;&#9733;&#9733;Today I visited clinic for tooth extraction and for laser extraction of fibroma.
+Both surgeries went very well.
+Dr Khare is really very good and professional doctor,it was very good experience with him."
+<p>(7) "&#9733;&#9733;&#9733;&#9733;&#9734;Khare Dental Home, located in Pimple Gurav, Pune, has a strong reputation on Justdial based on patient feedback as of early 2026.The clinic is noted for being modern, clean, and well-maintained with advanced equipment like lasers.Reviewers often praise the friendly staff and professional conduct of the doctors.It is specifically recognized for being child-friendly (pediatric care) and LGBTQ+ friendly."
 </section>
 <footer>
   <p>© 2026 Khare Dental Home | Pune</p>
