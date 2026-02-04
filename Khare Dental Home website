@@ -133,7 +133,7 @@
     <section id="about">
         <h2>About Our Clinic</h2>
         <div class="box">
-            <p>With more than 25 years of combined experience, Khare Dental Home is dedicated to redefining your dental experience. We offer personalized, advanced dental treatments with a strong focus on comfort, safety, and long-term oral health.
+            <p>With more than 25 years of combined experience, Khare Dental Home is dedicated to redefining your dental experience. We offer personalized, advanced dental treatments with a strong focus on comfort, safety and long-term oral health.
             </p>
             <br>
             <p><strong>Location:</strong> 7, Rupsangam Society, Classic Apartments, Phase 2, Opposite Kalpataru Estate, Pimple Gurav, Pune-411061
@@ -434,17 +434,25 @@
                 <h2>A look at our clinic</h2>
                 <div class="box">
                     <p><strong>Khare Dental Home</strong></p>
-                    <img src="">
+                    <img src="https://drive.google.com/file/d/1ZckQnEEza-S_Ejix72P_aLejY8h5VvQx/view?usp=drive_link">
                     <p>Khare Dental Home</p>
                     <img src="https://drive.google.com/file/d/1_DY-n5XPTPFaF_xuE2-ercoDRn4Q5Q90/view?usp=drive_link">
+                    <img src="https://drive.google.com/file/d/1dAUASxhtjeM-o8Ob8cRmTeQJ2r34Safv/view?usp=drive_link">
+                    <img src="https://drive.google.com/file/d/1ZckQnEEza-S_Ejix72P_aLejY8h5VvQx/view?usp=drive_link">
                     <p><strong>Interior</strong></p>
                     <img src="https://drive.google.com/file/d/1_DY-n5XPTPFaF_xuE2-ercoDRn4Q5Q90/view?usp=drive_link">
                     <p>Workspace</p>
-                    <img src="">
+                    <img src="https://drive.google.com/file/d/1ygz-7SC7xLwehP4XKYyC5DRlDErlMwKd/view?usp=drive_link">
+                     <img src="https://drive.google.com/file/d/1nQv-KPSbnHz7Mob6o06BN2cx1YQfpzbr/view?usp=drive_link">
                     <p>Treatment area</p>
-                    <img src="">
+                    <img src="https://drive.google.com/file/d/1pE9N1fl8HTnuJNKu14hY7n8sk_Uj8tv7/view?usp=drive_link">
+                    <img src="https://drive.google.com/file/d/1eaapZNY1JBV2aTu9fuyb551alsbloSsD/view?usp=drive_link">
+                    <img src="https://drive.google.com/file/d/1FgtZyDRM6m3URsw6PFop1Piq8RvNY_U_/view?usp=drive_link">
+                    <img src="https://drive.google.com/file/d/10f98iO3EjdmigCfZ2o2yEj9vRZL02roS/view?usp=drive_link">
+                    <img src="https://drive.google.com/file/d/19BS2Aq98UFReFFrk8sXInJ6X4M4AKNk2/view?usp=drive_link">
                     <p>Outer area</p>
-                    <img src="">
+                    <img src="https://drive.google.com/file/d/1UjpI4ny5kWuNc2s8wnA8aeVRm5I1KqfQ/view?usp=drive_link">
+                    <img src="https://drive.google.com/file/d/1x-iDoD1y2C3FthlskvjFCSTeMfyDgmp8/view?usp=drive_link">
                     <p>Achievements</p>
                     <img src="https://drive.google.com/file/d/11Z_iO0ZfzCBN6ZqEAQs1gGOjOxCXJUZm/view?usp=drive_link">
  <img src="https://drive.google.com/file/d/1pDOQi5ycwNKsinx8QKspT1q_liWiwZ03/view?usp=drive_link">
@@ -485,7 +493,7 @@
                     const content = button.nextElementSibling;
                     content.style.display = content.style.display === "block" ? "none" : "block";
                 }
-            </script>
+           </script>
 </body>
 </html>
-<!DOCTYPE html>
+</!DOCTYPE html>
