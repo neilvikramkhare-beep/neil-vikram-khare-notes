@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Security Risk Monitor</title>
+<div class="logo-container d-flex align-items-center mb-4">
+    <div class="logo-shield me-2">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3498db" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-3z"></path>
+            <path d="M12 11v4"></path>
+            <path d="M10 13h4"></path>
+        </svg>
+    </div>
+    <div class="logo-text">
+        <span class="logo-title">Cyber Security</span><br>
+        <span class="logo-subtitle">Risk Monitor</span>
+    </div>
+</div>
+<style>
+.logo-container {
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+}
+.logo-shield svg {
+    transition: transform 0.3s;
+}
+.logo-shield svg:hover {
+    transform: rotate(10deg);
+    stroke: #2ecc71; 
+}
+.logo-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3498db;
+}
+.logo-subtitle {
+    font-size: 1rem;
+    color: #aaaaaa;
+    letter-spacing: 0.5px;
+}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    body { background-color: #1e1e1e; color: white; }
+    .card { background-color: #121212; }
+    .btn-scan { background-color: #3498db; color: white; }
+    .risk-severity.Low { color: #2ecc71; }
+    .risk-severity.Medium { color: #f1c40f; }
+    .risk-severity.High { color: #e67e22; }
+    .risk-severity.Critical { color: #e74c3c; }
+    pre { background-color: #1e1e1e; color: white; padding: 15px; border-radius: 5px; overflow-x: auto; }
+</style>
+</head>
+<body>
+<div class="container py-4">
+    <h1 class="mb-4">Cyber Security Risk Monitor</h1>
+    <div class="input-group mb-3">
+        <input type="text" id="urlInput" class="form-control" placeholder="Enter Website URL">
+        <button class="btn btn-scan" id="scanBtn">Scan Now</button>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">Website Security Scan</div>
+        <div class="card-body">
+            <pre id="scanOutput">Run a scan to see results here...</pre>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">Risk Dashboard</div>
+        <div class="card-body">
+            <h3 id="riskScore">Risk Score: -- / 100</h3>
+            <h5>Severity: <span id="riskSeverity" class="risk-severity">--</span></h5>
+            <p>Last Scan: <span id="lastScan">--</span></p>
+            <pre id="riskReport">Run a scan to see breach and risk details here.</pre>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const scanBtn = document.getElementById('scanBtn');
+const urlInput = document.getElementById('urlInput');
+const scanOutput = document.getElementById('scanOutput');
+const riskScore = document.getElementById('riskScore');
+const riskSeverity = document.getElementById('riskSeverity');
+const lastScan = document.getElementById('lastScan');
+const riskReport = document.getElementById('riskReport');
+let lastBreaches = new Set();
+let lastURL = "";
+async function performScan(url, showAlerts = true) {
+    if (!url) return;
+    scanOutput.textContent = "Scanning...";
+    riskReport.textContent = "Fetching breach data...";
+    try {
+        const res = await fetch(`/scan?url=${encodeURIComponent(url)}`);
+        const data = await res.json();
+        scanOutput.textContent = data.site_result || "No data";
+        riskScore.textContent = `Risk Score: ${data.breach_score || '--'} / 100`;
+        riskSeverity.textContent = data.breach_severity || '--';
+        riskSeverity.className = `risk-severity ${data.breach_severity || ''}`;
+        lastScan.textContent = data.last_scan || '--';
+        riskReport.textContent = data.report || "No breach report available.";
+        if (showAlerts && data.report) {
+            const currentBreaches = new Set(
+                Array.from(data.report.matchAll(/Breach Name: ([^\n]+)/g)).map(m => m[1])
+            );
+            const newBreaches = [...currentBreaches].filter(b => !lastBreaches.has(b));
+            if (newBreaches.length > 0) {
+                alert(`⚠️ New breach detected for ${url}!\n\n${newBreaches.join("\n")}`);
+            }
+            lastBreaches = currentBreaches;
+        }
+    } catch (err) {
+        scanOutput.textContent = "Error scanning site.";
+        riskReport.textContent = err.message || "Unknown error";
+    }
+}
+scanBtn.addEventListener('click', () => {
+    lastURL = urlInput.value.trim();
+    lastBreaches = new Set(); 
+    performScan(lastURL);
+});
+setInterval(() => {
+    if (lastURL) {
+        performScan(lastURL, true);
+    }
+}, 5 * 60 * 1000); 
+</script>
+</body>
+</html>
