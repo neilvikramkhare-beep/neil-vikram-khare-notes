@@ -1,0 +1,23 @@
+const CanRunMixin = (BaseClass) => class extends BaseClass {
+    run() {
+        console.log(`${this.name} is running.`);
+    }
+};
+const CanFlyMixin = (BaseClass) => class extends BaseClass {
+    fly() {
+        console.log(`${this.name} is flying.`);
+    }
+};
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+}
+class Dragon extends CanFlyMixin(CanRunMixin(Animal)) {
+    constructor(name) {
+        super(name);
+    }
+}
+const pet = new Dragon('Smaug');
+pet.run(); 
+pet.fly(); 
