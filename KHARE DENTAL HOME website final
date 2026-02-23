@@ -481,7 +481,7 @@
             rating: document.getElementById('userRating').value,
             review: document.getElementById('reviewText').value
         };
-        fetch('https://api.yourwebsite.com', { 
+        fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
